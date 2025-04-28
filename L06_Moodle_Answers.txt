@@ -1,0 +1,52 @@
+Task 1A:
+F1-Score: 0.8118811881188118
+
+Task 1B:
+# TODO: implement one-v-rest multi-class classifier
+from sklearn.linear_model import LogisticRegression
+
+# train one classifier for each class (one-vs-rest approach)
+n_classes = len(np.unique(y))
+classifiers = []
+
+for i in range(n_classes):
+    binary_y_train = (y_train == i).astype(int)
+    
+    # train binary classifier
+    clf = LogisticRegression(random_state=RANDOM_SEED)
+    clf.fit(X_train, binary_y_train)
+    classifiers.append(clf)
+
+# predictions
+probs = np.zeros((X_test.shape[0], n_classes))
+for i, clf in enumerate(classifiers):
+    # probabiliity
+    probs[:, i] = clf.predict_proba(X_test)[:, 1]
+
+# tak highest probablity
+yhat = np.argmax(probs, axis=1)
+
+print(classification_report(y_test, yhat, digits=3))
+
+Average F1 Score: 0.725
+Weighted Average: 0.707
+
+Task 2:
+k=5, Mean Accuracy: 0.8100, Std Deviation: 0.0303
+k=10, Mean Accuracy: 0.8120, Std Deviation: 0.0458
+k=15, Mean Accuracy: 0.8128, Std Deviation: 0.0610
+k=20, Mean Accuracy: 0.8080, Std Deviation: 0.0806
+k=25, Mean Accuracy: 0.8080, Std Deviation: 0.0857
+k=30, Mean Accuracy: 0.8137, Std Deviation: 0.0839
+
+see plots in Attachments
+
+Explanations:
+- Mean Accuracy: as k increases, mean accuracy tends to only increase slightly (or even stabilize). 
+Reason for this is because with more folds, each training set contains more of the data 
+-> better trained models
+
+- Standard Deviation: as k increases, standard deviation of accuracies tends to decrease. 
+This means that with more folds, varianz between different performances decreases
+-> more consistent results across folds
+

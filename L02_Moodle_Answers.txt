@@ -1,0 +1,54 @@
+Task 1A:
+No, the relationship between x and y2 is not linear.
+
+Task 2A:
+class UnivariateLinearRegression:
+
+  def __init__(self):
+    self.theta_0: float = 0.
+    self.theta_1: float = 0.
+
+  def predict(self, x):
+    y_pred = self.theta_0 + self.theta_1 * x
+    return y_pred
+
+  def fit(self, x, y):
+    # TODO
+    x_mean = np.mean(x)
+    y_mean = np.mean(y)
+    self.theta_1 = np.sum((x - x_mean) * (y - y_mean)) / np.sum((x - x_mean) ** 2)
+    self.theta_0 = y_mean - self.theta_1 * x_mean
+
+    return self
+
+Task 3A:
+sizes = []
+times = []
+n = 1000
+for m in [10, 50, 100, 200, 250, 500, 1000]:
+  # TODO create a dataset with m samples and n dimensions, we provide a helper function for this!
+  X, y = create_random_data(m, n)
+
+  start_time = time.monotonic()
+  # enter the code you want to time here
+  theta = np.linalg.solve(X.T @ X, X.T @ y)
+  elapsed = time.monotonic() - start_time
+
+  # TODO what is the input size of the problem
+  problem_size = m * n
+
+  sizes.append(problem_size)
+  times.append(elapsed)
+
+plt.scatter(sizes, times)
+plt.xlabel('Problem-Size')
+plt.ylabel('Runtime (s)')
+plt.show()
+
+Estimated problem size for approximately 30 minutes of running time: 830605197.2150611
+
+Task 3B:
+See Attachments for Plot
+It takes foreeever to run if using large values :(
+
+

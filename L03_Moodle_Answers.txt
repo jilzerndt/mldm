@@ -1,0 +1,57 @@
+Task 1A:
+class SGDUnivariateLinearRegression:
+
+  def __init__(self):
+    self.theta_0: float = 0.
+    self.theta_1: float = 0.
+    self.rng = np.random.default_rng(RANDOM_SEED)
+
+  def predict(self, x):
+    y = self.theta_0 + self.theta_1 * x
+    return y
+
+
+  def fit(self, x, y, n_iter: int = 100, learning_rate: float = 1.0):
+    for t in range(n_iter):
+      sample_ix = self.rng.integers(0, len(x))
+
+      xt = x[sample_ix]
+      yt = y[sample_ix]
+
+      # TODO: update self.theta_0 and self.theta_1 SIMULTANEOUSLY (!!!) according to their update equations
+      error = (self.theta_0 + self.theta_1 * xt) - yt
+      self.theta_0 -= learning_rate * error
+      self.theta_1 -= learning_rate * error * xt
+
+    return self
+
+Task 1B:
+Mean Squared Error: 0.05999686076066351
+
+Task 1C:
+See plot in Jupyter Notebook or also attached
+Interpretation:
+The curves for alpha = 0.01 and alpha = 0.10 show, that with more iterations, 
+the MSE decreases for the learning rate. They converge relatively quickly. 
+For some reason if alpha = 1.00 the curve first acts as expected, 
+but begins linearly increasing again after 1000 iterations. I don't know why.
+
+Task 2A:
+see plot in Attachments
+
+Task 2B:
+see both plots in Attachments
+
+Task 2C:
+see plot in Attachments
+Questions:
+1. From looking at it, I'd say probably 5 (MSE Test) or 10 (MSE Train), 
+and for MSE Train I'd even say the larger the better.
+If you take both into consideration it's 7 (I think)?
+2. MSE Train generally decreases with higher polynomial degrees, 
+this indicates that the model fits the training data bette with higher degrees.
+MSE Test decreases faster initially (so it works better for polynomial degrees 3-7) 
+but after that exponentially increases.
+3. MSE Test exponentially increases, indicating overfitting. 
+The model becomes too complex and starts to capture noise in the training data, 
+leading to poor generalization to new, unseen data.

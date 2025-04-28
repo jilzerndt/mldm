@@ -1,0 +1,21 @@
+Task 1A:
+y^(m)(b+w^Tx^(m)) for each support vector:
+Support vector 1: 0.999963925990754
+Support vector 2: 1.0000173516991135
+Support vector 3: 0.9999820617831694
+
+Task 1B:
+Width of the margin: 1.3966075670598666
+
+Task 2A:
+Mean Accuracy with standardized features: 0.9772079772079773
+Mean Accuracy without standardization: 0.9176638176638177
+Difference: 0.05954415954415959
+
+Task 3A:
+I chose C=1, but C=10 also looks pretty good (I think)
+See plot in Attachments
+
+Task 4A:
+I managed to reach Accuracy = 1.0 (idk if this is good or bad)
+See plot in Attachments

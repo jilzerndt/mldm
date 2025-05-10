@@ -1,0 +1,24 @@
+L09 Neural Networks - Moodle Answers
+
+Task 1a.1: Output of the network for x₁=1 and x₂=1
+Answer: 6
+
+Task 1a.2: Output of the network for x₁=1 and x₂=-1
+Answer: 0
+
+Task 2a: Forward pass implementation
+def forward_pass(x, W, u):
+    hidden_outputs = activation(x.T @ W)
+    y = activation(u @ hidden_outputs)
+    return y
+
+Task 2b: Weight updates in stochastic gradient descent
+W = W - learning_rate * grad_w
+u = u - learning_rate * grad_u
+
+Task 3a: Option with biggest impact on model performance
+- Adding bias terms (use_bias=True)
+- Using 'adam' optimizer
+- Increasing hidden nodes
+
+Final accuracy achieved: 1.0 (100%)

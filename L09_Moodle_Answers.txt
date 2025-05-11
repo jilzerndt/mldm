@@ -16,9 +16,17 @@ Task 2b: Weight updates in stochastic gradient descent
 W = W - learning_rate * grad_w
 u = u - learning_rate * grad_u
 
+Also: only works if losses are computed in the following way:
+# compute and log squared error for the current sample
+#loss = 0.5 * (y_t - forward_pass(x_t, W, u))**2
+full_loss = 0
+for i in range(4):
+    full_loss += 0.5 * (y[i] - forward_pass(X[i], W, u))**2
+full_loss /= 4
+losses.append(full_loss)
+
+Graphic found in repo :)
+
 Task 3a: Option with biggest impact on model performance
 - Adding bias terms (use_bias=True)
-- Using 'adam' optimizer
-- Increasing hidden nodes
-
-Final accuracy achieved: 1.0 (100%)
+-> Final accuracy achieved: 1.0 (100%)

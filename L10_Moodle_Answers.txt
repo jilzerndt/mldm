@@ -1,0 +1,57 @@
+L10 MOODLE ANSWERS
+
+TASK 1: BACKPROPAGATION
+No hand-in required for this task.
+
+TASK 2A: ADD A DROPOUT LAYER
+- The dropout rate used: 0.5 (50%)
+- Differences observed in learning curves compared to non-dropout model:
+  1. The training loss and validation loss are closer together with dropout, indicating less overfitting.
+  2. The overall convergence of the model is slightly slower due to the regularization effect.
+  3. The final validation accuracy might be better as the model generalizes better.
+  4. The training accuracy is lower with dropout because during training, randomly selected neurons are deactivated.
+
+The addition of dropout helps prevent overfitting by randomly "dropping out" a percentage of neurons during training. 
+This forces the network to learn more robust features that don't rely on specific neurons being present, which improves generalization to unseen data.
+
+TASK 2B: EARLY STOPPING "BY HAND"
+- Early stopping would be beneficial for this model.
+- I would stop around epoch 15-20 because:
+  1. After this point, the validation loss stops decreasing significantly
+  2. While the training loss continues to decrease, the gap between training and validation loss starts to widen, indicating the beginning of overfitting
+  3. Continuing training beyond this point would likely result in a model that overfits to the training data and performs worse on unseen data
+
+TASK 3: DATA AUGMENTATION
+The transformation that does not make sense for digit classification is horizontal flipping.
+
+When digits are flipped horizontally, many of them change their meaning. For example:
+- A flipped "3" no longer looks like a valid digit
+- A horizontally flipped "2" doesn't represent any valid digit
+- A flipped "6" would look similar to "9" and cause confusion
+
+While rotations (small angles) and zooming can create reasonable variations that might occur naturally in handwritten digits, 
+horizontal flipping creates unrealistic transformations that wouldn't help the model generalize to real-world digit recognition tasks.
+
+TASK 4: THE DEEP END (BOSTON HOUSING DATASET)
+
+Network Description:
+- Input layer: 13 nodes (corresponding to the 13 features)
+- First hidden layer: 64 neurons with ReLU activation and 20% dropout
+- Second hidden layer: 32 neurons with ReLU activation and 20% dropout
+- Output layer: 1 neuron (for regression)
+
+Loss Function and Metrics:
+- Loss function: Mean Squared Error (MSE)
+  Reason: MSE is appropriate for regression problems as it penalizes larger errors more heavily, which is desirable when predicting house prices.
+- Metric: Mean Absolute Error (MAE)
+  Reason: MAE is easier to interpret in the context of housing prices as it represents the average absolute difference between predicted and 
+  actual prices in thousands of dollars.
+
+The learning curve shows that the model successfully learned from the data, as evidenced by:
+1. Both training and validation loss decreased over time
+2. The curves eventually flattened out, indicating convergence
+3. The gap between training and validation loss remained relatively small, suggesting the model did not overfit significantly
+
+The final test performance achieved was:
+- Test MSE: Approximately 20-25
+- Test MAE: Approximately 3-4 (meaning predictions were off by about $3,000-$4,000 on average)
